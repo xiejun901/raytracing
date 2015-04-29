@@ -14,6 +14,8 @@
 #include <wincodec.h>
 #include <dwmapi.h>
 
+#include"SceneObject.h"
+
 template<class Interface>
 inline void SafeRelease(Interface ** pp)
 {
@@ -68,6 +70,8 @@ private:
 	}
 	void renderDepth(Sphere scene, PerspectiveCamera camera, int maxDepth);
 	void renderNormal(Sphere scene, PerspectiveCamera camera);
+	void renderRayTrace(BaseObject &scene, PerspectiveCamera camera);
+	void renderUnion(UnionObject &scene, PerspectiveCamera camera);
 private:
 	HWND m_hwnd;
 	ID2D1Factory *m_pDirect2dFactory;//

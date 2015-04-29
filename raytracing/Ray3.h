@@ -3,6 +3,18 @@
 #pragma once
 #include"vector3D.h"
 #include<memory>
+#include"Material.h"
+
+
+class IntersectResult{
+public:
+	IntersectResult() :geometry(0), distance(0), position(vector3D<float>(0, 0, 0)), normal(vector3D<float>(0, 0, 0)){}
+	int geometry = 0;
+//	std::shared_ptr<Material> m_material;
+	float distance = 0;
+	vector3D<float> position = vector3D<float>(0, 0, 0);
+	vector3D<float> normal = vector3D<float>(0, 0, 0);
+};
 
 class Ray3{
 	friend class Sphere;
@@ -12,19 +24,11 @@ public:
 	{
 		return origin + t*direction;
 	}
-private:
+//private:
 	vector3D<float> origin;
 	vector3D<float> direction;
 };
-class Sphere;
-class IntersectResult{
-public:
-	IntersectResult():geometry(0), distance(0), position(vector3D<float>(0, 0, 0)), normal(vector3D<float>(0, 0, 0)){}
-	int geometry=0;
-	float distance = 0;
-	vector3D<float> position = vector3D<float>(0, 0, 0);
-	vector3D<float> normal = vector3D<float>(0, 0, 0);
-};
+
 
 class Sphere{
 	typedef vector3D<float> v3d;
@@ -77,11 +81,5 @@ public:
 	float fovScale;
 };
 
-class CheckerMaterial{
-public:
-private:
-
-
-};
 
 #endif

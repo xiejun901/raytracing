@@ -81,12 +81,15 @@
   <ItemGroup>
     <ClInclude Include="Color.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="Ray3.h" />
+    <ClInclude Include="SceneObject.h" />
     <ClInclude Include="vector3D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="Material.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

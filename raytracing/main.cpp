@@ -25,6 +25,9 @@ int WINAPI WinMain(
 	//v3=v2.negte();
 	//v3 = cross(v1, v2);
 	//Color<float> c1(1, 1, 1);
+	//Color<float> c2(3, 4, 5);
+	//Color<float> c3;
+	//c3 = c1 + c2;
 
 	if (SUCCEEDED(CoInitialize(NULL)))
 	{
