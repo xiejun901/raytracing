@@ -105,4 +105,6 @@ private:
 
 };
 
+
+Color<float> rayTraceRecursive(UnionObject &scene, const Ray3 ray, int maxReflect);
 #endif

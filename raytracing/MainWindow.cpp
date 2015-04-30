@@ -267,15 +267,16 @@ void MainWindow::generateBitmap()
 	std::shared_ptr<SphereObject> sphere2(new SphereObject(vector3D<float>(10, 10, -10), 10));
 	std::shared_ptr<PlaneObject> plane(new PlaneObject(vector3D<float>(0, 1, 0), 0));
 
-	sphere1->m_material = std::shared_ptr<Material>(new PhongMaterial(Color<float>(1.0f, 0.0f, 0.0f), Color<float>(1, 1, 1), 6));
-	sphere2->m_material = std::shared_ptr<Material>(new PhongMaterial(Color<float>(0.0f, 0.0f,1.0f), Color<float>(1, 1, 1), 6));
-	//plane->m_material = std::shared_ptr<Material>(new CheckerMaterial(0.2F));
+	sphere1->m_material = std::shared_ptr<Material>(new PhongMaterial(Color<float>(1.0f, 0.0f, 0.0f), Color<float>(1, 1, 1), 16,0.15));
+	sphere2->m_material = std::shared_ptr<Material>(new PhongMaterial(Color<float>(0.0f, 0.0f,1.0f), Color<float>(1, 1, 1), 16,0.15));
+	plane->m_material = std::shared_ptr<Material>(new CheckerMaterial(0.1f,0.5f));
 	UnionObject uo;
 	uo.insert(sphere1);
 	uo.insert(sphere2);
 	uo.insert(plane);
 	PerspectiveCamera camera(vector3D<float>(0, 5, 15), vector3D<float>(0, 0, -1), vector3D<float>(0, 1, 0), 90);
-	renderUnion(uo, camera);
+	//renderUnion(uo, camera);
+	renderRayTraceReflection(uo, camera,5);
 }
 //‰÷»æ…Ó∂»
 void MainWindow::renderDepth(Sphere scene, PerspectiveCamera camera, int maxDepth)
@@ -376,6 +377,31 @@ void MainWindow::renderUnion(UnionObject &scene, PerspectiveCamera camera)
 					color.blue = 1;
 				setColor(x, y, static_cast<int>(color.red * 255), static_cast<int>(color.green * 255), static_cast<int>(color.blue * 255), 0);
 			}
+
+		}
+	}
+}
+
+
+void MainWindow::renderRayTraceReflection(UnionObject &scene, PerspectiveCamera camera,int maxReflect)
+{
+	camera.initialize();
+	for (int y = 0; y < 256; y++)
+	{
+		auto sy = 1.0f - y / 256.0f;
+		for (int x = 0; x < 256; x++)
+		{
+			auto sx = x / 256.0f;
+			auto ray = camera.generateRay(sx, sy);
+		//	auto result = rayTraceRecursive(scene,ray,3);
+			auto color = rayTraceRecursive(scene, ray, maxReflect);;
+			if (color.red>1)
+				color.red = 1;
+			if (color.green>1)
+				color.green = 1;
+			if (color.blue>1)
+				color.blue = 1;
+			setColor(x, y, static_cast<int>(color.red * 255), static_cast<int>(color.green * 255), static_cast<int>(color.blue * 255), 0);
 
 		}
 	}

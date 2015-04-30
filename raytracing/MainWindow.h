@@ -72,6 +72,7 @@ private:
 	void renderNormal(Sphere scene, PerspectiveCamera camera);
 	void renderRayTrace(BaseObject &scene, PerspectiveCamera camera);
 	void renderUnion(UnionObject &scene, PerspectiveCamera camera);
+	void renderRayTraceReflection(UnionObject &scene, PerspectiveCamera camera,int maxReflect);
 private:
 	HWND m_hwnd;
 	ID2D1Factory *m_pDirect2dFactory;//
