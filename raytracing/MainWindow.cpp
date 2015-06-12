@@ -267,8 +267,8 @@ void MainWindow::generateBitmap()
 	std::shared_ptr<SphereObject> sphere2(new SphereObject(vector3D<float>(10, 10, -10), 10));
 	std::shared_ptr<PlaneObject> plane(new PlaneObject(vector3D<float>(0, 1, 0), 0));
 
-	sphere1->m_material = std::shared_ptr<Material>(new PhongMaterial(Color<float>(1.0f, 0.0f, 0.0f), Color<float>(1, 1, 1), 16,0.15));
-	sphere2->m_material = std::shared_ptr<Material>(new PhongMaterial(Color<float>(0.0f, 0.0f,1.0f), Color<float>(1, 1, 1), 16,0.15));
+	sphere1->m_material = std::shared_ptr<Material>(new PhongMaterial(Color<float>(1.0f, 0.0f, 0.0f), Color<float>(1, 1, 1), 16,0.25));
+	sphere2->m_material = std::shared_ptr<Material>(new PhongMaterial(Color<float>(0.0f, 0.0f,1.0f), Color<float>(1, 1, 1), 16,0.25));
 	plane->m_material = std::shared_ptr<Material>(new CheckerMaterial(0.1f,0.5f));
 	UnionObject uo;
 	uo.insert(sphere1);
